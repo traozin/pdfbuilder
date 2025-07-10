@@ -1,3 +1,5 @@
+.PHONY: artisan composer bash fix-perms migrate seed clear
+
 PHP_CONTAINER=mxgo-php
 
 artisan:
