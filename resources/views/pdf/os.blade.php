@@ -151,7 +151,7 @@
         .final-declaration-wrapper {
             border: 1px solid #000;
             border-top: none;
-            padding: 15px 20px;
+            padding: 10px 20px;
             text-align: center;
             page-break-before: auto;
             page-break-inside: avoid;
@@ -164,7 +164,7 @@
             font-weight: bold;
             font-size: 17px;
             line-height: 1.5;
-            margin-bottom: 30px;
+            margin-bottom: 60px;
         }
 
         .signature-line-area {
