@@ -31,19 +31,16 @@
             padding: 0 20px;
         }
 
-        .info.left {
-            border-right: 1px solid #000;
-        }
-
         .info.right {
             flex-direction: column;
-            border-left: 1px solid #000;
             text-align: right;
         }
 
         .info.center {
             flex-direction: column;
             padding: 50px;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
             text-align: center;
         }
 
@@ -90,6 +87,7 @@
             padding: 6px 10px;
             text-align: left;
             vertical-align: top;
+            line-height: 1.4;
         }
 
         .components-table th {
@@ -105,6 +103,7 @@
 
         .resume-table th {
             text-align: center;
+            vertical-align: middle;
         }
 
         .resume-table .table-title {
@@ -115,6 +114,7 @@
         .resume-table .table-subtitle {
             font-weight: normal;
             font-size: 12px;
+            border-top: none;
         }
 
         .resume-table thead {
@@ -126,8 +126,12 @@
             page-break-inside: avoid !important;
         }
 
-        .resume-table tbody tr td {
-            page-break-inside: avoid !important;
+        .item-team-description {
+            font-size: 10px;
+            color: #555;
+            margin-top: 5px;
+            display: block;
+            line-height: 1.2;
         }
 
         .header {
@@ -144,34 +148,28 @@
             page-break-after: avoid;
         }
 
-
         .final-declaration-wrapper {
             border: 1px solid #000;
             border-top: none;
-            padding: 5px 20px;
+            padding: 15px 20px;
             text-align: center;
             page-break-before: auto;
             page-break-inside: avoid;
             page-break-after: avoid;
-            width: 100%;
+            width: auto;
             box-sizing: border-box;
         }
-
 
         .declaration-text {
             font-weight: bold;
             font-size: 17px;
             line-height: 1.5;
             margin-bottom: 30px;
-            padding-bottom: 5px;
         }
-
 
         .signature-line-area {
             margin-top: 15px;
-
         }
-
 
         .signature-line {
             width: 500px;
@@ -179,7 +177,6 @@
             background-color: #000;
             margin: 0 auto 5px auto;
         }
-
 
         .signature-details {
             font-size: 13px;
@@ -224,18 +221,15 @@
             <tr>
                 <th colspan="3" class="table-title">RESUMO DE ITENS EXECUTADOS</th>
             </tr>
-            <tr>
-                <th style="width: 5%;">#</th>
-                <th style="width: 65%;">Descrição</th>
-                <th style="width: 30%;">Equipe</th>
-            </tr>
         </thead>
         <tbody>
             @foreach ($itens as $index => $item)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $item['descricao'] }}</td>
-                    <td>{{ $item['equipe'] }}</td>
+                    <td>
+                        {{ $item['descricao'] }}<br>
+                        <span class="item-team-description">Equipe: {{ $item['equipe'] }}</span>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
