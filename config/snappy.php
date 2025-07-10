@@ -42,6 +42,8 @@ return [
             'page-size' => 'A4',
             'margin-top' => 10,
             'margin-bottom' => 10,
+            'no-images' => false,
+            'enable-local-file-access' => true,
         ],
         'env' => [],
     ],
