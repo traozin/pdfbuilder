@@ -72,16 +72,6 @@
             font-weight: bold;
         }
 
-        .footer {
-            text-align: center;
-            font-size: 10px;
-            position: fixed;
-            bottom: 30px;
-            width: calc(100% - 60px);
-            left: 30px;
-            right: 30px;
-        }
-
         h1 {
             font-size: 18px;
             margin: 10px 0;
@@ -105,6 +95,7 @@
         .components-table th {
             width: 18%;
             text-align: center;
+            vertical-align: middle;
             font-weight: bold;
         }
 
@@ -139,13 +130,6 @@
             page-break-inside: avoid !important;
         }
 
-        .declaration {
-            text-align: center;
-            font-weight: bold;
-            margin-top: 20px;
-            page-break-before: auto;
-        }
-
         .header {
             page-break-after: avoid;
         }
@@ -158,6 +142,53 @@
         .resume-table {
             page-break-before: auto;
             page-break-after: avoid;
+        }
+
+
+        .final-declaration-wrapper {
+            border: 1px solid #000;
+            border-top: none;
+            padding: 5px 20px;
+            text-align: center;
+            page-break-before: auto;
+            page-break-inside: avoid;
+            page-break-after: avoid;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+        .declaration-text {
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            padding-bottom: 5px;
+        }
+
+
+        .signature-line-area {
+            margin-top: 15px;
+
+        }
+
+
+        .signature-line {
+            width: 500px;
+            height: 1px;
+            background-color: #000;
+            margin: 0 auto 5px auto;
+        }
+
+
+        .signature-details {
+            font-size: 13px;
+            line-height: 1.4;
+            margin-top: 5px;
+        }
+
+        .signature-details strong {
+            display: block;
         }
     </style>
 </head>
@@ -210,9 +241,6 @@
         </tbody>
     </table>
 
-    <div class="declaration">
-        DECLARAÇÃO DE AERONAVEGABILIDADE
-    </div>
     <x-pdf.footer :responsavel="$os['responsavel'] ?? null" />
 </body>
 
