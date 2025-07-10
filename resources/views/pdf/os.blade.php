@@ -131,7 +131,7 @@
             color: #555;
             margin-top: 5px;
             display: block;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .header {
@@ -187,6 +187,13 @@
         .signature-details strong {
             display: block;
         }
+
+        .cell-content-wrapper {
+            display: table-cell;
+            page-break-inside: avoid !important;
+            width: 100%;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
@@ -196,15 +203,21 @@
     <table class="components-table">
         @foreach ($os['componentes'] ?? [] as $componente)
             <tr>
-                <th>{{ $componente['nome'] ?? 'COMPONENTE' }}</th>
+                <th>
+                    <div class="cell-content-wrapper">
+                        {{ $componente['nome'] ?? 'COMPONENTE' }}
+                    </div>
+                </th>
                 <td>
-                    SN: {{ $componente['sn'] ?? '-' }}<br>
-                    Modelo: {{ $componente['modelo'] ?? '-' }}<br>
-                    Fabricante: {{ $componente['fabricante'] ?? '-' }}<br>
-                    TSN: {{ $componente['tsn'] ?? '-' }}<br>
-                    TSO: {{ $componente['tso'] ?? '-' }}<br>
-                    Revisão: {{ $componente['revisao'] ?? '-' }}<br>
-                    {!! $componente['outros'] ?? '' !!}
+                    <div class="cell-content-wrapper">
+                        SN: {{ $componente['sn'] ?? '-' }}<br>
+                        Modelo: {{ $componente['modelo'] ?? '-' }}<br>
+                        Fabricante: {{ $componente['fabricante'] ?? '-' }}<br>
+                        TSN: {{ $componente['tsn'] ?? '-' }}<br>
+                        TSO: {{ $componente['tso'] ?? '-' }}<br>
+                        Revisão: {{ $componente['revisao'] ?? '-' }}<br>
+                        {!! $componente['outros'] ?? '' !!}
+                    </div>
                 </td>
             </tr>
         @endforeach
@@ -225,10 +238,16 @@
         <tbody>
             @foreach ($itens as $index => $item)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
                     <td>
-                        {{ $item['descricao'] }}<br>
-                        <span class="item-team-description">Equipe: {{ $item['equipe'] }}</span>
+                        <div class="cell-content-wrapper">
+                            {{ $index + 1 }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cell-content-wrapper">
+                            {{ $item['descricao'] }}<br>
+                            <span class="item-team-description">Equipe: {{ $item['equipe'] }}</span>
+                        </div>
                     </td>
                 </tr>
             @endforeach
