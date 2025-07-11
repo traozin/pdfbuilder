@@ -8,7 +8,6 @@
         body {
             font-family: Arial, sans-serif;
             font-size: 12px;
-            margin: 0 30px;
         }
 
         .header,
@@ -28,12 +27,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 20px;
         }
 
         .info.right {
             flex-direction: column;
             text-align: right;
+        }
+
+        .info.right,
+        .info.left {
+            width: 20%;
         }
 
         .info.center {
@@ -60,25 +63,12 @@
         }
 
         .header-bottom {
-            justify-content: space-between;
-            margin-top: 8px;
+            justify-content: space-around;
         }
 
         .header-bottom h1 {
             font-size: 22px;
             font-weight: bold;
-        }
-
-        h1 {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            page-break-inside: auto;
         }
 
         th,
@@ -88,6 +78,8 @@
             text-align: left;
             vertical-align: top;
             line-height: 1.4;
+            page-break-inside: auto;
+            -webkit-column-break-inside: auto;
         }
 
         .components-table th {
@@ -122,8 +114,9 @@
             page-break-inside: avoid;
         }
 
-        .resume-table tbody tr {
-            page-break-inside: avoid !important;
+        .resume-table tbody tr,
+        .components-table tr {
+            page-break-inside: auto !important;
         }
 
         .item-team-description {
@@ -150,7 +143,6 @@
 
         .final-declaration-wrapper {
             border: 1px solid #000;
-            border-top: none;
             padding: 10px 20px;
             text-align: center;
             page-break-before: auto;
@@ -158,6 +150,7 @@
             page-break-after: avoid;
             width: auto;
             box-sizing: border-box;
+            margin-top: 5px;
         }
 
         .declaration-text {
@@ -189,10 +182,98 @@
         }
 
         .cell-content-wrapper {
-            display: table-cell;
-            page-break-inside: avoid !important;
+            display: block;
+            page-break-inside: auto !important;
             width: 100%;
             box-sizing: border-box;
+            -webkit-region-break-inside: auto;
+            -webkit-column-break-inside: auto;
+        }
+
+        .component-row {
+            display: flex;
+            border: 1px solid #000;
+            border-bottom: none;
+            page-break-inside: avoid;
+            max-height: 100px;
+        }
+
+        .component-header {
+            width: 20%;
+            padding: 8px 12px;
+        }
+
+        .component-body {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 80%;
+            padding: 8px 12px;
+            border-left: 1px solid #000;
+        }
+
+        .component-body span {
+            width: max-content;
+            line-height: normal;
+            margin-bottom: 4px;
+        }
+
+        .component-header {
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resume-header {
+            display: flex;
+            justify-content: space-around;
+            border: 1px solid #000;
+            padding: 20px;
+            font-size: 15px;
+            page-break-inside: avoid;
+        }
+
+        .resume-title {
+            border: 1px solid #000;
+            padding: 20px;
+            border-top: none;
+            border-bottom: none;
+            text-align: center;
+            font-size: 18px
+        }
+
+        .resume-row {
+            display: flex;
+            grid-template-columns: 5% 95%;
+            margin-bottom: -1px;
+            page-break-inside: avoid;
+        }
+
+        .resume-col {
+            padding: 6px 10px;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        .resume-col.desc {
+            border-left: 1px solid #000;
+        }
+
+        .resume-col.index {
+            display: flex;
+            width: 3%;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .item-team-description {
+            font-size: 10px;
+            color: #555;
+            margin-top: 5px;
+            line-height: 1.1;
         }
     </style>
 </head>
@@ -200,59 +281,46 @@
 <body>
     <x-pdf.header :numero="$os['numero'] ?? null" :prefixo="$os['prefixo'] ?? null" />
 
-    <table class="components-table">
-        @foreach ($os['componentes'] ?? [] as $componente)
-            <tr>
-                <th>
-                    <div class="cell-content-wrapper">
-                        {{ $componente['nome'] ?? 'COMPONENTE' }}
-                    </div>
-                </th>
-                <td>
-                    <div class="cell-content-wrapper">
-                        SN: {{ $componente['sn'] ?? '-' }}<br>
-                        Modelo: {{ $componente['modelo'] ?? '-' }}<br>
-                        Fabricante: {{ $componente['fabricante'] ?? '-' }}<br>
-                        TSN: {{ $componente['tsn'] ?? '-' }}<br>
-                        TSO: {{ $componente['tso'] ?? '-' }}<br>
-                        Revisão: {{ $componente['revisao'] ?? '-' }}<br>
-                        {!! $componente['outros'] ?? '' !!}
-                    </div>
-                </td>
-            </tr>
-        @endforeach
-    </table>
+    @foreach ($os['componentes'] ?? [] as $i => $comp)
+        <div class="component-row">
+            <div class="component-header">
+                {{ $comp['nome'] ?? 'COMPONENTE' }}
+            </div>
+            <div class="component-body">
+                <span>SN: {{ $comp['sn'] ?? '-' }}</span>
+                <span>Modelo: {{ $comp['modelo'] ?? '-' }}</span>
+                <span>Fabricante: {{ $comp['fabricante'] ?? '-' }}</span>
+                <span>TSN: {{ $comp['tsn'] ?? '-' }}</span>
+                <span>TSO: {{ $comp['tso'] ?? '-' }}</span>
+                <span>Revisão: {{ $comp['revisao'] ?? '-' }}</span>
+                <span>{!! $comp['outros'] ?? '' !!}</span>
+            </div>
+        </div>
+    @endforeach
 
-    <table class="resume-table">
-        <thead>
-            <tr>
-                <th colspan="3" class="table-subtitle">
-                    Data de Início: {{ $os['inicio']}} &nbsp;&nbsp;&nbsp;&nbsp;
-                    Término Previsto: {{ $os['termino']}}
-                </th>
-            </tr>
-            <tr>
-                <th colspan="3" class="table-title">RESUMO DE ITENS EXECUTADOS</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($itens as $index => $item)
-                <tr>
-                    <td>
-                        <div class="cell-content-wrapper">
-                            {{ $index + 1 }}
-                        </div>
-                    </td>
-                    <td>
-                        <div class="cell-content-wrapper">
-                            {{ $item['descricao'] }}<br>
-                            <span class="item-team-description">Equipe: {{ $item['equipe'] }}</span>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+
+    <div class="resume-header">
+        <div>Data de Início: {{ $os['inicio'] }}</div>
+        <div>Término Previsto: {{ $os['termino'] }}</div>
+    </div>
+
+    <div class="resume-title">RESUMO DE ITENS EXECUTADOS</div>
+
+    <div style="border: 1px solid #000;">
+        @foreach ($itens as $idx => $item)
+            <div class="resume-row">
+                <div class="resume-col index">
+                    {{ $idx + 1 }}
+                </div>
+                <div class="resume-col desc">
+                    {{ $item['descricao'] }}<br>
+                    <span class="item-team-description">
+                        Equipe: {{ $item['equipe'] }}
+                    </span>
+                </div>
+            </div>
+        @endforeach
+    </div>
 
     <x-pdf.footer :responsavel="$os['responsavel'] ?? null" />
 </body>
