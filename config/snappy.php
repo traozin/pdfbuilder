@@ -40,8 +40,8 @@ return [
         'options' => [
             'disable-smart-shrinking' => true,
             'page-size' => 'A4',
-            'margin-top' => 10,
-            'margin-bottom' => 10,
+            'margin-top' => 5,
+            'margin-bottom' => 5,
             'no-images' => false,
             'enable-local-file-access' => true,
         ],
