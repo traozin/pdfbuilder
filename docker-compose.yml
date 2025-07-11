@@ -7,9 +7,6 @@ services:
     container_name: mxgo-php
     restart: unless-stopped
     working_dir: /var/www/html
-    volumes:
-      - ./:/var/www/html
-      - /var/www/html/vendor
     networks:
       - mxgo-network
 
@@ -20,8 +17,8 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./:/var/www/html
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - .:/var/www/html:ro
     depends_on:
       - app
     networks:
