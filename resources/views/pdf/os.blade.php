@@ -23,6 +23,19 @@
             justify-content: space-between;
         }
 
+        .header-bottom {
+            justify-content: space-around;
+        }
+
+        .header-bottom h1 {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .header {
+            page-break-after: avoid;
+        }
+
         .info {
             display: flex;
             align-items: center;
@@ -62,83 +75,12 @@
             font-size: 18px;
         }
 
-        .header-bottom {
-            justify-content: space-around;
-        }
-
-        .header-bottom h1 {
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        th,
-        td {
-            border: 1px solid #000;
-            padding: 6px 10px;
-            text-align: left;
-            vertical-align: top;
-            line-height: 1.4;
-            page-break-inside: auto;
-            -webkit-column-break-inside: auto;
-        }
-
-        .components-table th {
-            width: 18%;
-            text-align: center;
-            vertical-align: middle;
-            font-weight: bold;
-        }
-
-        .components-table td {
-            padding: 8px 12px;
-        }
-
-        .resume-table th {
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .resume-table .table-title {
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .resume-table .table-subtitle {
-            font-weight: normal;
-            font-size: 12px;
-            border-top: none;
-        }
-
-        .resume-table thead {
-            display: table-header-group;
-            page-break-inside: avoid;
-        }
-
-        .resume-table tbody tr,
-        .components-table tr {
-            page-break-inside: auto !important;
-        }
-
         .item-team-description {
             font-size: 10px;
             color: #555;
             margin-top: 5px;
             display: block;
             line-height: 1.1;
-        }
-
-        .header {
-            page-break-after: avoid;
-        }
-
-        .components-table {
-            page-break-before: auto;
-            page-break-after: avoid;
-        }
-
-        .resume-table {
-            page-break-before: auto;
-            page-break-after: avoid;
         }
 
         .final-declaration-wrapper {
@@ -179,15 +121,6 @@
 
         .signature-details strong {
             display: block;
-        }
-
-        .cell-content-wrapper {
-            display: block;
-            page-break-inside: auto !important;
-            width: 100%;
-            box-sizing: border-box;
-            -webkit-region-break-inside: auto;
-            -webkit-column-break-inside: auto;
         }
 
         .component-row {
@@ -267,13 +200,6 @@
             text-align: center;
             justify-content: center;
             align-items: center;
-        }
-
-        .item-team-description {
-            font-size: 10px;
-            color: #555;
-            margin-top: 5px;
-            line-height: 1.1;
         }
     </style>
 </head>
